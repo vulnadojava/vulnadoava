@@ -16,7 +16,7 @@
 *.iml
 *.ipr
 
-### NetBeans ###
+### NetBeans ### Comments
 /nbproject/private/
 /nbbuild/
 /dist/
