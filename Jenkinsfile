@@ -69,7 +69,7 @@ pipeline {
                 variable: 'SETTINGS_XML']]) {
                     sh "mkdir -p .m2 || true"
                     sh "cp $SETTINGS_XML .m2/settings.xml"
-                    sh "docker build -t $TARGET --build-arg PROJECT_KEY=${env.MODULE} --build-arg SONAR_HOST=${env.SONAR_HOST} --build-arg SONAR_LOGIN=${SONAR_LOGIN} ."  
+                    sh "docker build -t $TARGET --build-arg PROJECT_KEY=${env.MODULE} --build-arg SONAR_HOST=${env.SONAR_HOST} --build-arg SONAR_LOGIN=${SONAR_LOGIN} . -f Dockerfile.nexus"  
                 }
           }
         }
