@@ -67,7 +67,7 @@ pipeline {
                 variable: "SONAR_LOGIN"],
 
                 [$class: 'FileBinding',
-                credentialsId: 'maven-settings-xml',
+                credentialsId: 'maven-settings-xml-internal',
                 variable: 'SETTINGS_XML']]) {
                     sh "mkdir -p .m2 || true"
                     sh "cp $SETTINGS_XML .m2/settings.xml"
