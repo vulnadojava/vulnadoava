@@ -7,7 +7,7 @@ pipeline {
       agent any
 
       environment {
-        MODULE = 'plugin-checkmarx-kics'
+        MODULE = 'vulnadoava'
         MODULE_ENV_NAME = 'dev'
         ECR_ENV_NAME = 'dev'
         ECR_REGION = 'us-east-1'
