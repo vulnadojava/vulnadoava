@@ -71,12 +71,12 @@
 		<repository>
 			<id>nexus-rel-upload</id>
 			<name>Internal Releases</name>
-			<url>https://artifacts.cloudbees.com/repository/maven-private-releases/</url>
+			<url>https://nexus-repo-oss.demo.cbc.beescloud.com/repository/maven-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snap-upload</id>
 			<name>Internal Snapshot Releases</name>
-			<url>https://artifacts.cloudbees.com/repository/maven-snapshots/</url>
+			<url>https://nexus-repo-oss.demo.cbc.beescloud.com/repository/maven-releases/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
