@@ -4,7 +4,9 @@
  */
 
 pipeline {
-      agent any
+      agent { label 'cbc-aws-g3-agent' }
+      // agent { label 'cbc-aws-g3-agent-ops' }
+      // agent { label 'gce-node' }
 
       environment {
         MODULE = 'vulnadoava'
