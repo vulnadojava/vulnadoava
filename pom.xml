@@ -84,7 +84,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>org.apache.maven.plugins</artifactId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
