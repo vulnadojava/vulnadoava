@@ -9,3 +9,4 @@ RUN mvn -e -s .m2/settings.xml clean deploy sonar:sonar \
                 -Dsonar.projectKey=${PROJECT_KEY} \
                 -Dsonar.host.url=${SONAR_HOST} \
                 -Dsonar.login=${SONAR_LOGIN}
+
