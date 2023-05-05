@@ -1,0 +1,119 @@
+#!groovy
+/*
+ * Build Java Artifacts
+ */
+
+def now = new Date()
+date = now.format("yyyyMMdd-HHmm", TimeZone.getTimeZone('UTC'))
+
+pipeline {
+  // agent { label 'cbc-aws-g3-agent' }
+  // agent { label 'cbc-aws-g3-agent-ops' }
+  //  agent { label 'gce-node' }
+  agent { label 'docker-agent' }
+
+    environment {
+        MODULE = 'vulnadoava'
+        DOCKER_FILE = "Dockerfile.${MODULE}"
+        DOCKERHUB_CREDS = "dockerhub_creds"
+        DOCKERHUB_ORG = "cbcdevdockerhub"
+        DOCKERHUB_REPO = "cbcdev"
+        VERSION = "${date}"
+
+    }
+
+    options {
+        // disableConcurrentBuilds()
+        skipDefaultCheckout()
+        skipStagesAfterUnstable()
+        // timestamps()
+        ansiColor('xterm')
+    }
+
+    triggers {
+        githubPush()
+    }
+
+    stages {
+
+        stage('Start') {
+          steps {
+            cleanWs()
+          }
+        }
+
+        stage('Checkout') {
+          steps {
+            deleteDir()
+            checkout scm
+          }
+        }
+
+        stage('Pre-build') {
+          steps {
+            script {
+                GIT_SHORT_HASH = env.GIT_COMMIT.take(7)
+                GIT_TAG = sh (script: "git describe --tags --always", returnStdout: true).trim()
+              }
+            }
+          }
+        }
+
+
+        stage('Git-TAG-Verify') {
+            steps {
+                script {
+                    GIT_TAG = GIT_TAG
+                }
+                    sh"""
+                        if [[ $GIT_TAG =~ ^v((\*)|([0-9]+(\.((\*)|([0-9]+(\.((\*)|([0-9]+)))?)))?))$ ]] || [[ $GIT_TAG =~ ^v((\*)|([0-9]+(\.((\*)|([0-9]+(\.((\*)|([0-9]+)))?)))?))-SNAPSHOT$ ]]; then
+                            echo -e '\n\t \033[32mValid TAG. \033[0m'
+                        else
+                            echo -e '\033[31mInvalid TAG...!!! The TAG should be like vX.Y.Z OR vX.Y.Z-SNAPSHOT. Some examples follows. \033[0m \n \n\t- \033[32mv1.1.1\033[0m \n\t- \033[32mv1.0.0-SNAPSHOT\033[0m \n\t'
+                        fi
+                        """
+            }
+        }
+
+        // stage('Build') {
+        //   steps {
+        //     withCredentials([
+
+        //         [$class: 'FileBinding',
+        //         credentialsId: 'maven-settings-xml-internal',
+        //         variable: 'SETTINGS_XML']]) {
+        //             sh '''
+        //                 mkdir -p .m2 || true
+        //                 cp $SETTINGS_XML .m2/settings.xml
+        //                 docker build -t ${MODULE}  -f $DOCKER_FILE .
+        //                 ID=$(docker create ${MODULE})
+        //                 echo ${ID}
+        //                 docker cp ${ID}:/src/target ./
+        //                 docker rm ${ID}
+        //                 pwd
+        //                 ls target
+        //                 '''
+        //         }
+        //     }
+        // }
+
+
+        // stage('DockerHub:Push') {
+        //   steps {
+        //     script {
+        //         sh "docker tag $MODULE $TARGET_DOCKERHUB"
+        //         sh "docker push -q $TARGET_DOCKERHUB"
+        //     }
+        //   }
+        // }
+
+
+    }
+
+    // post {
+    //     always {
+    //         archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
+    //     }
+    // }
+
+}
