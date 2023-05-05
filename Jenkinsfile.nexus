@@ -52,7 +52,6 @@ pipeline {
         stage('Pre-build') {
           steps {
             script {
-                GIT_SHORT_HASH = env.GIT_COMMIT.take(7)
                 GIT_TAG = sh (script: "git describe --tags --always", returnStdout: true).trim()
               }
             }
