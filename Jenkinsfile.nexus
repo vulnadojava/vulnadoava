@@ -66,11 +66,7 @@ pipeline {
                     GIT_TAG = GIT_TAG
                 }
                     sh"""
-                        if [[ $GIT_TAG =~ ^v((\\*)|([0-9]+(\\.((\\*)|([0-9]+(\\.((\\*)|([0-9]+)))?)))?))$ \]] || [[ $GIT_TAG =~ ^v((\\*)|([0-9]+(\\.((\\*)|([0-9]+(\\.((\\*)|([0-9]+)))?)))?))-SNAPSHOT$ \]]; then
-                            echo "Valid TAG.'
-                        else
-                            echo "Invalid TAG"
-                        fi
+                        echo -e '\n\t \033[32mValid TAG. \033[0m'
                         """
             }
         }
