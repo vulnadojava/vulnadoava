@@ -65,9 +65,9 @@ pipeline {
                 script {
                     GIT_TAG = GIT_TAG
                 }
-                    sh"""
+                    sh'''
                         echo -e '\n\t \033[32mValid TAG. \033[0m'
-                        """
+                        '''
             }
         }
 
