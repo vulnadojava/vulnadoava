@@ -65,13 +65,13 @@ pipeline {
                 script {
                     GIT_TAG = GIT_TAG
                 }
-                    sh'''
-                        if [[ $GIT_TAG =~ ^v[0-9]{1}.[0-9]{1}.[0-9]{2}\$ ]]; then
+                    sh"""
+                        if [ $GIT_TAG =~ ^v[0-9]{1}.[0-9]{1}.[0-9]{2}\$ ]; then
                             echo -e '\n\t \033[32mValid TAG. \033[0m'
                         else
                             echo -e '\033[31mInvalid TAG...!!! The TAG should be like vX.Y.Z OR vX.Y.Z-SNAPSHOT. Some examples follows. \033[0m \n \n\t- \033[32mv1.1.1\033[0m \n\t- \033[32mv1.0.0-SNAPSHOT\033[0m \n\t'
                         fi
-                        '''
+                        """
             }
         }
 
