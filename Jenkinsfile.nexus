@@ -70,8 +70,9 @@ pipeline {
 if (artefact_version ==~ /[0-9]{1}\.[0-9]{1}\.[0-9]{1}/) 
 {
  artefact_bucket_name = "managed-artefact-store"
- echo "Application version to deploy is ${artefact_version} from Artefact store ${artefact_bucket_name}"
+ 
 } 
+echo "Application version to deploy is ${artefact_version} from Artefact store ${artefact_bucket_name}"
 
                 }
             }
