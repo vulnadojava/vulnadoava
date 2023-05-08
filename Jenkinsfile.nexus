@@ -67,7 +67,7 @@ pipeline {
               
               
               def artefact_version = "1.99.0"
-if (artefact_version ==~ /[0-9]{1}\.[0-9]{1}\.[0-9]{1}/) 
+if (artefact_version ==~ /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/) 
 {
  artefact_bucket_name = "managed-artefact-store"
  
