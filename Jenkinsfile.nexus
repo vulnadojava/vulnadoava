@@ -19,7 +19,7 @@ pipeline {
         DOCKERHUB_ORG = "cbcdevdockerhub"
         DOCKERHUB_REPO = "cbcdev"
         VERSION = "${date}"
-        GIT_TAG = "v1.0.344-SNAPSHOT"
+        GIT_TAG = "v1.0.344-SNAPSHOTa"
 
     }
 
