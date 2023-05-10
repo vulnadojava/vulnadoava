@@ -19,7 +19,6 @@ pipeline {
         DOCKERHUB_ORG = "cbcdevdockerhub"
         DOCKERHUB_REPO = "cbcdev"
         VERSION = "${date}"
-        GIT_TAG = "v1.0.25"
 
     }
 
@@ -50,16 +49,13 @@ pipeline {
           }
         }
 
-        // stage('Pre-build') {
-        //   steps {
-        //     script {
-
-        //         GIT_TAG = sh (script: "git describe --tags --always", returnStdout: true).trim()
-        //       }
-        //     }
-        //   }
-
-
+        stage('Pre-build') {
+          steps {
+            script {
+                GIT_TAG = sh (script: "git describe --tags --always", returnStdout: true).trim()
+              }
+            }
+          }
 
     stage('Git-TAG-Verify') {
       steps {
