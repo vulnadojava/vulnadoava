@@ -19,7 +19,7 @@ pipeline {
         DOCKERHUB_ORG = "cbcdevdockerhub"
         DOCKERHUB_REPO = "cbcdev"
         VERSION = "${date}"
-        GIT_TAG = "v1.0.344-SNAPSHOTa"
+        GIT_TAG = "1v1.0.344-SNAPSHOT"
 
     }
 
@@ -68,7 +68,7 @@ pipeline {
             sh "set +x && echo -e '\033[0;35m Valid TAG :\033[0m \033[0;34m ${GIT_TAG} \033[0m'"
           }
           else {
-            sh "set +x && echo -e '\033[31mInvalid TAG...!!! The TAG should be like vX.Y.Z OR vX.Y.Z-SNAPSHOT, where X, Y and Z can be maximum 3 digits. Some examples follows. \033[0m \n \n\t- \033[32mv1.1.1\033[0m \n\t- \033[32mv123.456.789 \033[0m \n\t- \033[32mv1.0.0-SNAPSHOT\033[0m \n\t- \033[32mv987.654.321-SNAPSHOT\033[0m \n\t' && exit 1"
+            sh "set +x && echo -e '\033[31m ${GIT_TAG} is an invalid TAG...!!! The TAG should be like vX.Y.Z OR vX.Y.Z-SNAPSHOT, where X, Y and Z can be maximum 3 digits. Some examples follows. \033[0m \n \n\t- \033[32mv1.1.1\033[0m \n\t- \033[32mv123.456.789 \033[0m \n\t- \033[32mv1.0.0-SNAPSHOT\033[0m \n\t- \033[32mv987.654.321-SNAPSHOT\033[0m \n\t' && exit 1"
           }
         }
       }
