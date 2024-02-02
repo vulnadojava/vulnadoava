@@ -71,12 +71,12 @@
 		<repository>
 			<id>nexus-rel-upload</id>
 			<name>Internal Releases</name>
-			<url>https://nexus.cbc-rep-1.sa-demo.beescloud.com/repository/maven-releases/</url>
+			<url>https://nexus.cbc-int-test-01.sa-demo.beescloud.com/repository/maven-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>nexus-snap-upload</id>
 			<name>Internal Snapshot Releases</name>
-			<url>https://nexus.cbc-rep-1.sa-demo.beescloud.com/repository/maven-snapshots/</url>
+			<url>https://nexus.cbc-int-test-01.sa-demo.beescloud.com/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
